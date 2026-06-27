@@ -1,0 +1,93 @@
+/*
+ * Copyright (C) 2015 Square, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@file:JvmName("WildcardTypeNames")
+@file:JvmMultifileClass
+
+package io.github.kavikt
+
+import kotlin.jvm.JvmMultifileClass
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
+import kotlin.reflect.KClass
+
+public class WildcardTypeName
+internal constructor(
+  outTypes: List<TypeName>,
+  inTypes: List<TypeName>,
+  nullable: Boolean = false,
+  annotations: List<AnnotationSpec> = emptyList(),
+  tags: Map<KClass<*>, Any> = emptyMap(),
+) : TypeName(nullable, annotations, TagMap(tags)) {
+  public val outTypes: List<TypeName> = outTypes.toImmutableList()
+  public val inTypes: List<TypeName> = inTypes.toImmutableList()
+
+  init {
+    require(this.outTypes.size == 1) { "unexpected out types: $outTypes" }
+  }
+
+  override fun copy(
+    nullable: Boolean,
+    annotations: List<AnnotationSpec>,
+    tags: Map<KClass<*>, Any>,
+  ): WildcardTypeName {
+    return WildcardTypeName(outTypes, inTypes, nullable, annotations, tags)
+  }
+
+  override fun emit(out: CodeWriter): CodeWriter {
+    return when {
+      inTypes.size == 1 -> out.emitCode("in %T", inTypes[0])
+      outTypes == STAR.outTypes -> out.emit("*")
+      else -> out.emitCode("out %T", outTypes[0])
+    }
+  }
+
+  override fun equalsWithGuard(other: TypeName, seen: RecursiveComparison): Boolean {
+    if (!super.equalsWithGuard(other, seen)) return false
+
+    other as WildcardTypeName
+
+    if (!outTypes.deepEquals(other.outTypes, seen)) return false
+    if (!inTypes.deepEquals(other.inTypes, seen)) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int {
+    var result = super.hashCode()
+    result = 31 * result + outTypes.hashCode()
+    result = 31 * result + inTypes.hashCode()
+    return result
+  }
+
+  public companion object {
+    /**
+     * Returns a type that represents an unknown type that produces `outType`. For example, if
+     * `outType` is `CharSequence`, this returns `out CharSequence`. If `outType` is `Any?`, this
+     * returns `*`, which is shorthand for `out Any?`.
+     */
+    @JvmStatic
+    public fun producerOf(outType: TypeName): WildcardTypeName =
+      WildcardTypeName(listOf(outType), emptyList())
+
+    /**
+     * Returns a type that represents an unknown type that consumes `inType`. For example, if
+     * `inType` is `String`, this returns `in String`.
+     */
+    @JvmStatic
+    public fun consumerOf(inType: TypeName): WildcardTypeName =
+      WildcardTypeName(listOf(ANY), listOf(inType))
+  }
+}

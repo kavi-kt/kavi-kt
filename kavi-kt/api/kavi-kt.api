@@ -1,0 +1,1275 @@
+public abstract interface class io/github/kavikt/Annotatable {
+	public abstract fun getAnnotations ()Ljava/util/List;
+}
+
+public abstract interface class io/github/kavikt/Annotatable$Builder {
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public abstract fun getAnnotations ()Ljava/util/List;
+}
+
+public final class io/github/kavikt/Annotatables {
+	public static final fun addAnnotation (Lio/github/kavikt/Annotatable$Builder;Ljava/lang/Class;)Lio/github/kavikt/Annotatable$Builder;
+	public static final fun addAnnotation (Lio/github/kavikt/Annotatable$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/Annotatable$Builder;
+}
+
+public final class io/github/kavikt/AnnotationSpec : io/github/kavikt/Taggable {
+	public static final field Companion Lio/github/kavikt/AnnotationSpec$Companion;
+	public static final fun builder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/ParameterizedTypeName;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClassName ()Lio/github/kavikt/ClassName;
+	public final fun getMembers ()Ljava/util/List;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeName ()Lio/github/kavikt/TypeName;
+	public final fun getUseSiteTarget ()Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public fun hashCode ()I
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder ()Lio/github/kavikt/AnnotationSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/AnnotationSpec$Builder : io/github/kavikt/Taggable$Builder {
+	public static final field Companion Lio/github/kavikt/AnnotationSpec$Builder$Companion;
+	public final fun addMember (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public final fun addMember (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public final fun build ()Lio/github/kavikt/AnnotationSpec;
+	public final fun getMembers ()Ljava/util/List;
+	public fun getTags ()Ljava/util/Map;
+	public final fun useSiteTarget (Lio/github/kavikt/AnnotationSpec$UseSiteTarget;)Lio/github/kavikt/AnnotationSpec$Builder;
+}
+
+public final class io/github/kavikt/AnnotationSpec$Builder$Companion {
+}
+
+public final class io/github/kavikt/AnnotationSpec$Companion {
+	public final fun builder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public final fun builder (Lio/github/kavikt/ParameterizedTypeName;)Lio/github/kavikt/AnnotationSpec$Builder;
+}
+
+public final class io/github/kavikt/AnnotationSpec$UseSiteTarget : java/lang/Enum {
+	public static final field DELEGATE Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field FIELD Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field FILE Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field GET Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field PARAM Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field PROPERTY Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field RECEIVER Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field SET Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static final field SETPARAM Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+	public static fun values ()[Lio/github/kavikt/AnnotationSpec$UseSiteTarget;
+}
+
+public final class io/github/kavikt/AnnotationSpecs {
+	public static final fun builder (Lio/github/kavikt/AnnotationSpec$Companion;Ljava/lang/Class;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/AnnotationSpec$Companion;Lkotlin/reflect/KClass;)Lio/github/kavikt/AnnotationSpec$Builder;
+	public static final fun get (Lio/github/kavikt/AnnotationSpec$Companion;Ljava/lang/annotation/Annotation;)Lio/github/kavikt/AnnotationSpec;
+	public static final fun get (Lio/github/kavikt/AnnotationSpec$Companion;Ljava/lang/annotation/Annotation;Z)Lio/github/kavikt/AnnotationSpec;
+	public static final fun get (Lio/github/kavikt/AnnotationSpec$Companion;Ljavax/lang/model/element/AnnotationMirror;)Lio/github/kavikt/AnnotationSpec;
+	public static synthetic fun get$default (Lio/github/kavikt/AnnotationSpec$Companion;Ljava/lang/annotation/Annotation;ZILjava/lang/Object;)Lio/github/kavikt/AnnotationSpec;
+}
+
+public final class io/github/kavikt/ClassName : io/github/kavikt/TypeName, java/lang/Comparable {
+	public static final field Companion Lio/github/kavikt/ClassName$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public fun <init> (Ljava/lang/String;[Ljava/lang/String;)V
+	public static final fun bestGuess (Ljava/lang/String;)Lio/github/kavikt/ClassName;
+	public fun compareTo (Lio/github/kavikt/ClassName;)I
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public final fun constructorReference ()Lio/github/kavikt/CodeBlock;
+	public fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/ClassName;
+	public synthetic fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public final fun enclosingClassName ()Lio/github/kavikt/ClassName;
+	public final fun getCanonicalName ()Ljava/lang/String;
+	public final fun getPackageName ()Ljava/lang/String;
+	public final fun getSimpleName ()Ljava/lang/String;
+	public final fun getSimpleNames ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun nestedClass (Ljava/lang/String;)Lio/github/kavikt/ClassName;
+	public final fun peerClass (Ljava/lang/String;)Lio/github/kavikt/ClassName;
+	public final fun reflectionName ()Ljava/lang/String;
+	public final fun topLevelClassName ()Lio/github/kavikt/ClassName;
+}
+
+public final class io/github/kavikt/ClassName$Companion {
+	public final fun bestGuess (Ljava/lang/String;)Lio/github/kavikt/ClassName;
+}
+
+public final class io/github/kavikt/ClassNames {
+	public static final fun get (Ljava/lang/Class;)Lio/github/kavikt/ClassName;
+	public static final fun get (Ljavax/lang/model/element/TypeElement;)Lio/github/kavikt/ClassName;
+	public static final fun get (Lkotlin/reflect/KClass;)Lio/github/kavikt/ClassName;
+}
+
+public final class io/github/kavikt/CodeBlock {
+	public static final field Companion Lio/github/kavikt/CodeBlock$Companion;
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final fun builder ()Lio/github/kavikt/CodeBlock$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun isEmpty ()Z
+	public final fun isNotEmpty ()Z
+	public static final fun of (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock;
+	public final fun toBuilder ()Lio/github/kavikt/CodeBlock$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/CodeBlock$Builder {
+	public fun <init> ()V
+	public final fun add (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun add (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun addNamed (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun build ()Lio/github/kavikt/CodeBlock;
+	public final fun clear ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun endControlFlow ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun indent ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun isEmpty ()Z
+	public final fun isNotEmpty ()Z
+	public final fun nextControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun unindent ()Lio/github/kavikt/CodeBlock$Builder;
+}
+
+public final class io/github/kavikt/CodeBlock$Companion {
+	public final fun builder ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun of (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock;
+}
+
+public abstract interface class io/github/kavikt/CodeBlockHolder {
+	public abstract fun getBody ()Lio/github/kavikt/CodeBlock;
+}
+
+public abstract interface class io/github/kavikt/CodeBlockHolder$Builder {
+	public abstract fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun addNamedCode (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun clearBody ()Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun endControlFlow ()Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun nextControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+}
+
+public final class io/github/kavikt/CodeBlocks {
+	public static final fun buildCodeBlock (Lkotlin/jvm/functions/Function1;)Lio/github/kavikt/CodeBlock;
+	public static final fun joinToCode (Ljava/util/Collection;)Lio/github/kavikt/CodeBlock;
+	public static final fun joinToCode (Ljava/util/Collection;Ljava/lang/CharSequence;)Lio/github/kavikt/CodeBlock;
+	public static final fun joinToCode (Ljava/util/Collection;Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Lio/github/kavikt/CodeBlock;
+	public static final fun joinToCode (Ljava/util/Collection;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Lio/github/kavikt/CodeBlock;
+	public static final fun joinToCode (Ljava/util/Collection;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;)Lio/github/kavikt/CodeBlock;
+	public static synthetic fun joinToCode$default (Ljava/util/Collection;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;ILjava/lang/Object;)Lio/github/kavikt/CodeBlock;
+	public static synthetic fun joinToCode$default (Ljava/util/Collection;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/kavikt/CodeBlock;
+	public static final fun withIndent (Lio/github/kavikt/CodeBlock$Builder;Lkotlin/jvm/functions/Function1;)Lio/github/kavikt/CodeBlock$Builder;
+}
+
+public final class io/github/kavikt/ContextParameter {
+	public fun <init> (Lio/github/kavikt/TypeName;)V
+	public fun <init> (Ljava/lang/String;Lio/github/kavikt/TypeName;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getType ()Lio/github/kavikt/TypeName;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class io/github/kavikt/ContextParameterizable {
+}
+
+public abstract interface class io/github/kavikt/ContextParameterizable$Builder {
+}
+
+public abstract interface class io/github/kavikt/ContextReceivable {
+}
+
+public abstract interface class io/github/kavikt/ContextReceivable$Builder {
+}
+
+public abstract interface annotation class io/github/kavikt/DelicateKaviApi : java/lang/annotation/Annotation {
+	public abstract fun message ()Ljava/lang/String;
+}
+
+public abstract interface class io/github/kavikt/Documentable {
+	public abstract fun getKdoc ()Lio/github/kavikt/CodeBlock;
+}
+
+public abstract interface class io/github/kavikt/Documentable$Builder {
+	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;
+	public abstract fun getKdoc ()Lio/github/kavikt/CodeBlock$Builder;
+}
+
+public final class io/github/kavikt/Dynamic : io/github/kavikt/TypeName {
+	public static final field INSTANCE Lio/github/kavikt/Dynamic;
+	public synthetic fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public fun copy (ZLjava/util/List;Ljava/util/Map;)Ljava/lang/Void;
+}
+
+public abstract interface annotation class io/github/kavikt/ExperimentalKaviApi : java/lang/annotation/Annotation {
+}
+
+public final class io/github/kavikt/FileSpec : io/github/kavikt/Annotatable, io/github/kavikt/CodeBlockHolder, io/github/kavikt/MemberSpecHolder, io/github/kavikt/Taggable, io/github/kavikt/TypeSpecHolder {
+	public static final field Companion Lio/github/kavikt/FileSpec$Companion;
+	public static final fun builder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/MemberName;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun builder (Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public static final fun get (Ljava/lang/String;Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/FileSpec;
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getBody ()Lio/github/kavikt/CodeBlock;
+	public final fun getComment ()Lio/github/kavikt/CodeBlock;
+	public final fun getDefaultImports ()Ljava/util/Set;
+	public fun getFunSpecs ()Ljava/util/List;
+	public final fun getMembers ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPackageName ()Ljava/lang/String;
+	public fun getPropertySpecs ()Ljava/util/List;
+	public final fun getRelativePath ()Ljava/lang/String;
+	public fun getTags ()Ljava/util/Map;
+	public fun getTypeSpecs ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun isScript ()Z
+	public static final fun scriptBuilder (Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder ()Lio/github/kavikt/FileSpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static synthetic fun toBuilder$default (Lio/github/kavikt/FileSpec;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+	public final fun writeTo (Ljava/lang/Appendable;)V
+}
+
+public final class io/github/kavikt/FileSpec$Builder : io/github/kavikt/Annotatable$Builder, io/github/kavikt/CodeBlockHolder$Builder, io/github/kavikt/MemberSpecHolder$Builder, io/github/kavikt/Taggable$Builder, io/github/kavikt/TypeSpecHolder$Builder {
+	public final fun addAliasedImport (Lio/github/kavikt/ClassName;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addAliasedImport (Lio/github/kavikt/ClassName;Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addAliasedImport (Lio/github/kavikt/MemberName;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addBodyComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addDefaultPackageImport (Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addFileComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public fun addFunction (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addFunction (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public final fun addImport (Lio/github/kavikt/ClassName;Ljava/lang/Iterable;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addImport (Lio/github/kavikt/ClassName;[Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addImport (Lio/github/kavikt/Import;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addImport (Lio/github/kavikt/MemberName;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addImport (Ljava/lang/String;Ljava/lang/Iterable;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addImport (Ljava/lang/String;[Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun addKotlinDefaultImports (ZZ)Lio/github/kavikt/FileSpec$Builder;
+	public static synthetic fun addKotlinDefaultImports$default (Lio/github/kavikt/FileSpec$Builder;ZZILjava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addNamedCode (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addNamedCode (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/FileSpec$Builder;
+	public fun addProperty (Lio/github/kavikt/PropertySpec;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addProperty (Lio/github/kavikt/PropertySpec;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public synthetic fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public fun addType (Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addType (Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/TypeSpecHolder$Builder;
+	public final fun addTypeAlias (Lio/github/kavikt/TypeAliasSpec;)Lio/github/kavikt/FileSpec$Builder;
+	public fun addTypes (Ljava/lang/Iterable;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addTypes (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpecHolder$Builder;
+	public synthetic fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun build ()Lio/github/kavikt/FileSpec;
+	public synthetic fun clearBody ()Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun clearBody ()Lio/github/kavikt/FileSpec$Builder;
+	public final fun clearComment ()Lio/github/kavikt/FileSpec$Builder;
+	public final fun clearImports ()Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun endControlFlow ()Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun endControlFlow ()Lio/github/kavikt/FileSpec$Builder;
+	public fun getAnnotations ()Ljava/util/List;
+	public final fun getDefaultImports ()Ljava/util/Set;
+	public final fun getImports ()Ljava/util/List;
+	public final fun getMembers ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPackageName ()Ljava/lang/String;
+	public fun getTags ()Ljava/util/Map;
+	public final fun indent (Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun isScript ()Z
+	public synthetic fun nextControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun nextControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+}
+
+public final class io/github/kavikt/FileSpec$Companion {
+	public final fun builder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun builder (Lio/github/kavikt/MemberName;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun builder (Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public final fun get (Ljava/lang/String;Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/FileSpec;
+	public final fun scriptBuilder (Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static synthetic fun scriptBuilder$default (Lio/github/kavikt/FileSpec$Companion;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+}
+
+public final class io/github/kavikt/FileSpecs {
+	public static final fun addAliasedImport (Lio/github/kavikt/FileSpec$Builder;Ljava/lang/Class;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun addAliasedImport (Lio/github/kavikt/FileSpec$Builder;Lkotlin/reflect/KClass;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun addImport (Lio/github/kavikt/FileSpec$Builder;Ljava/lang/Class;Ljava/lang/Iterable;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun addImport (Lio/github/kavikt/FileSpec$Builder;Ljava/lang/Class;[Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun addImport (Lio/github/kavikt/FileSpec$Builder;Ljava/lang/Enum;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun addImport (Lio/github/kavikt/FileSpec$Builder;Lkotlin/reflect/KClass;Ljava/lang/Iterable;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun addImport (Lio/github/kavikt/FileSpec$Builder;Lkotlin/reflect/KClass;[Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun toJavaFileObject (Lio/github/kavikt/FileSpec;)Ljavax/tools/JavaFileObject;
+	public static final fun writeTo (Lio/github/kavikt/FileSpec;Ljava/io/File;)Ljava/io/File;
+	public static final fun writeTo (Lio/github/kavikt/FileSpec;Ljava/nio/file/Path;)Ljava/nio/file/Path;
+	public static final fun writeTo (Lio/github/kavikt/FileSpec;Ljavax/annotation/processing/Filer;)V
+	public static final fun writeTo (Lio/github/kavikt/FileSpec;Lokio/Path;Lokio/FileSystem;)Lokio/Path;
+}
+
+public final class io/github/kavikt/FunSpec : io/github/kavikt/Annotatable, io/github/kavikt/CodeBlockHolder, io/github/kavikt/ContextParameterizable, io/github/kavikt/ContextReceivable, io/github/kavikt/Documentable, io/github/kavikt/OriginatingElementsHolder, io/github/kavikt/Taggable {
+	public static final field Companion Lio/github/kavikt/FunSpec$Companion;
+	public static final fun builder (Lio/github/kavikt/MemberName;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun builder (Ljava/lang/String;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun constructorBuilder ()Lio/github/kavikt/FunSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getBody ()Lio/github/kavikt/CodeBlock;
+	public fun getContextParameters ()Ljava/util/List;
+	public fun getContextReceiverTypes ()Ljava/util/List;
+	public final fun getDelegateConstructor ()Ljava/lang/String;
+	public final fun getDelegateConstructorArguments ()Ljava/util/List;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getModifiers ()Ljava/util/Set;
+	public final fun getName ()Ljava/lang/String;
+	public fun getOriginatingElements ()Ljava/util/List;
+	public final fun getParameters ()Ljava/util/List;
+	public final fun getReceiverKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getReceiverType ()Lio/github/kavikt/TypeName;
+	public final fun getReturnKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getReturnType ()Lio/github/kavikt/TypeName;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public static final fun getterBuilder ()Lio/github/kavikt/FunSpec$Builder;
+	public fun hashCode ()I
+	public final fun isAccessor ()Z
+	public final fun isConstructor ()Z
+	public static final fun setterBuilder ()Lio/github/kavikt/FunSpec$Builder;
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder ()Lio/github/kavikt/FunSpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun toBuilder$default (Lio/github/kavikt/FunSpec;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/FunSpec$Builder : io/github/kavikt/Annotatable$Builder, io/github/kavikt/CodeBlockHolder$Builder, io/github/kavikt/ContextParameterizable$Builder, io/github/kavikt/ContextReceivable$Builder, io/github/kavikt/Documentable$Builder, io/github/kavikt/OriginatingElementsHolder$Builder, io/github/kavikt/Taggable$Builder {
+	public synthetic fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addModifiers (Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addModifiers ([Lio/github/kavikt/KModifier;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addNamedCode (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addNamedCode (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addParameter (Lio/github/kavikt/ParameterSpec;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addParameter (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addParameter (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addParameters (Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addTypeVariable (Lio/github/kavikt/TypeVariableName;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun addTypeVariables (Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun build ()Lio/github/kavikt/FunSpec;
+	public final fun callSuperConstructor (Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callSuperConstructor (Ljava/util/List;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callSuperConstructor ([Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callSuperConstructor ([Ljava/lang/String;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun callSuperConstructor$default (Lio/github/kavikt/FunSpec$Builder;[Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callThisConstructor (Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callThisConstructor (Ljava/util/List;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callThisConstructor ([Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun callThisConstructor ([Ljava/lang/String;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun callThisConstructor$default (Lio/github/kavikt/FunSpec$Builder;[Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun clearBody ()Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun clearBody ()Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun endControlFlow ()Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun endControlFlow ()Lio/github/kavikt/FunSpec$Builder;
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun getModifiers ()Ljava/util/List;
+	public fun getOriginatingElements ()Ljava/util/List;
+	public final fun getParameters ()Ljava/util/List;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public synthetic fun nextControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun nextControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun receiver (Lio/github/kavikt/TypeName;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun receiver (Lio/github/kavikt/TypeName;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun receiver$default (Lio/github/kavikt/FunSpec$Builder;Lio/github/kavikt/TypeName;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun returns (Lio/github/kavikt/TypeName;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun returns (Lio/github/kavikt/TypeName;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun returns$default (Lio/github/kavikt/FunSpec$Builder;Lio/github/kavikt/TypeName;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+}
+
+public final class io/github/kavikt/FunSpec$Companion {
+	public final fun builder (Lio/github/kavikt/MemberName;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun builder (Ljava/lang/String;)Lio/github/kavikt/FunSpec$Builder;
+	public final fun constructorBuilder ()Lio/github/kavikt/FunSpec$Builder;
+	public final fun getterBuilder ()Lio/github/kavikt/FunSpec$Builder;
+	public final fun setterBuilder ()Lio/github/kavikt/FunSpec$Builder;
+}
+
+public final class io/github/kavikt/FunSpecs {
+	public static final fun addParameter (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/String;Ljava/lang/reflect/Type;Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun addParameter (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/String;Ljava/lang/reflect/Type;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun addParameter (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/String;Lkotlin/reflect/KClass;Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun addParameter (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/String;Lkotlin/reflect/KClass;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun jvmModifiers (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/Iterable;)V
+	public static final fun overriding (Lio/github/kavikt/FunSpec$Companion;Ljavax/lang/model/element/ExecutableElement;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun overriding (Lio/github/kavikt/FunSpec$Companion;Ljavax/lang/model/element/ExecutableElement;Ljavax/lang/model/type/DeclaredType;Ljavax/lang/model/util/Types;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun receiver$default (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun receiver$default (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun returns (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun returns (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun returns (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun returns (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun returns (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun returns (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun returns$default (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/reflect/Type;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun returns$default (Lio/github/kavikt/FunSpec$Builder;Lkotlin/reflect/KClass;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+}
+
+public final class io/github/kavikt/Import : java/lang/Comparable {
+	public fun compareTo (Lio/github/kavikt/Import;)I
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lio/github/kavikt/Import;
+	public static synthetic fun copy$default (Lio/github/kavikt/Import;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kavikt/Import;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAlias ()Ljava/lang/String;
+	public final fun getQualifiedName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/KModifier : java/lang/Enum {
+	public static final field ABSTRACT Lio/github/kavikt/KModifier;
+	public static final field ACTUAL Lio/github/kavikt/KModifier;
+	public static final field ANNOTATION Lio/github/kavikt/KModifier;
+	public static final field COMPANION Lio/github/kavikt/KModifier;
+	public static final field CONST Lio/github/kavikt/KModifier;
+	public static final field CROSSINLINE Lio/github/kavikt/KModifier;
+	public static final field DATA Lio/github/kavikt/KModifier;
+	public static final field ENUM Lio/github/kavikt/KModifier;
+	public static final field EXPECT Lio/github/kavikt/KModifier;
+	public static final field EXTERNAL Lio/github/kavikt/KModifier;
+	public static final field FINAL Lio/github/kavikt/KModifier;
+	public static final field FUN Lio/github/kavikt/KModifier;
+	public static final field IN Lio/github/kavikt/KModifier;
+	public static final field INFIX Lio/github/kavikt/KModifier;
+	public static final field INLINE Lio/github/kavikt/KModifier;
+	public static final field INNER Lio/github/kavikt/KModifier;
+	public static final field INTERNAL Lio/github/kavikt/KModifier;
+	public static final field LATEINIT Lio/github/kavikt/KModifier;
+	public static final field NOINLINE Lio/github/kavikt/KModifier;
+	public static final field OPEN Lio/github/kavikt/KModifier;
+	public static final field OPERATOR Lio/github/kavikt/KModifier;
+	public static final field OUT Lio/github/kavikt/KModifier;
+	public static final field OVERRIDE Lio/github/kavikt/KModifier;
+	public static final field PRIVATE Lio/github/kavikt/KModifier;
+	public static final field PROTECTED Lio/github/kavikt/KModifier;
+	public static final field PUBLIC Lio/github/kavikt/KModifier;
+	public static final field REIFIED Lio/github/kavikt/KModifier;
+	public static final field SEALED Lio/github/kavikt/KModifier;
+	public static final field SUSPEND Lio/github/kavikt/KModifier;
+	public static final field TAILREC Lio/github/kavikt/KModifier;
+	public static final field VALUE Lio/github/kavikt/KModifier;
+	public static final field VARARG Lio/github/kavikt/KModifier;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/kavikt/KModifier;
+	public static fun values ()[Lio/github/kavikt/KModifier;
+}
+
+public final class io/github/kavikt/KOperator : java/lang/Enum {
+	public static final field CONTAINS Lio/github/kavikt/KOperator;
+	public static final field DEC Lio/github/kavikt/KOperator;
+	public static final field DIV Lio/github/kavikt/KOperator;
+	public static final field DIV_ASSIGN Lio/github/kavikt/KOperator;
+	public static final field EQUALS Lio/github/kavikt/KOperator;
+	public static final field GE Lio/github/kavikt/KOperator;
+	public static final field GT Lio/github/kavikt/KOperator;
+	public static final field INC Lio/github/kavikt/KOperator;
+	public static final field ITERATOR Lio/github/kavikt/KOperator;
+	public static final field LE Lio/github/kavikt/KOperator;
+	public static final field LT Lio/github/kavikt/KOperator;
+	public static final field MINUS Lio/github/kavikt/KOperator;
+	public static final field MINUS_ASSIGN Lio/github/kavikt/KOperator;
+	public static final field NOT Lio/github/kavikt/KOperator;
+	public static final field NOT_CONTAINS Lio/github/kavikt/KOperator;
+	public static final field NOT_EQUALS Lio/github/kavikt/KOperator;
+	public static final field PLUS Lio/github/kavikt/KOperator;
+	public static final field PLUS_ASSIGN Lio/github/kavikt/KOperator;
+	public static final field RANGE_TO Lio/github/kavikt/KOperator;
+	public static final field REM Lio/github/kavikt/KOperator;
+	public static final field REM_ASSIGN Lio/github/kavikt/KOperator;
+	public static final field TIMES Lio/github/kavikt/KOperator;
+	public static final field TIMES_ASSIGN Lio/github/kavikt/KOperator;
+	public static final field UNARY_MINUS Lio/github/kavikt/KOperator;
+	public static final field UNARY_PLUS Lio/github/kavikt/KOperator;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/kavikt/KOperator;
+	public static fun values ()[Lio/github/kavikt/KOperator;
+}
+
+public final class io/github/kavikt/LambdaTypeName : io/github/kavikt/TypeName {
+	public static final field Companion Lio/github/kavikt/LambdaTypeName$Companion;
+	public fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/LambdaTypeName;
+	public synthetic fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public final fun copy (ZLjava/util/List;ZLjava/util/Map;)Lio/github/kavikt/LambdaTypeName;
+	public static synthetic fun copy$default (Lio/github/kavikt/LambdaTypeName;ZLjava/util/List;ZLjava/util/Map;ILjava/lang/Object;)Lio/github/kavikt/LambdaTypeName;
+	public static final fun get (Lio/github/kavikt/TypeName;Ljava/util/List;Lio/github/kavikt/TypeName;)Lio/github/kavikt/LambdaTypeName;
+	public static final fun get (Lio/github/kavikt/TypeName;[Lio/github/kavikt/ParameterSpec;Lio/github/kavikt/TypeName;)Lio/github/kavikt/LambdaTypeName;
+	public static final fun get (Lio/github/kavikt/TypeName;[Lio/github/kavikt/TypeName;Lio/github/kavikt/TypeName;)Lio/github/kavikt/LambdaTypeName;
+	public final fun getParameters ()Ljava/util/List;
+	public final fun getReceiver ()Lio/github/kavikt/TypeName;
+	public final fun getReturnType ()Lio/github/kavikt/TypeName;
+	public fun hashCode ()I
+	public final fun isSuspending ()Z
+}
+
+public final class io/github/kavikt/LambdaTypeName$Companion {
+	public final fun get (Lio/github/kavikt/TypeName;Ljava/util/List;Lio/github/kavikt/TypeName;)Lio/github/kavikt/LambdaTypeName;
+	public final fun get (Lio/github/kavikt/TypeName;[Lio/github/kavikt/ParameterSpec;Lio/github/kavikt/TypeName;)Lio/github/kavikt/LambdaTypeName;
+	public final fun get (Lio/github/kavikt/TypeName;[Lio/github/kavikt/TypeName;Lio/github/kavikt/TypeName;)Lio/github/kavikt/LambdaTypeName;
+	public static synthetic fun get$default (Lio/github/kavikt/LambdaTypeName$Companion;Lio/github/kavikt/TypeName;Ljava/util/List;Lio/github/kavikt/TypeName;ILjava/lang/Object;)Lio/github/kavikt/LambdaTypeName;
+	public static synthetic fun get$default (Lio/github/kavikt/LambdaTypeName$Companion;Lio/github/kavikt/TypeName;[Lio/github/kavikt/ParameterSpec;Lio/github/kavikt/TypeName;ILjava/lang/Object;)Lio/github/kavikt/LambdaTypeName;
+	public static synthetic fun get$default (Lio/github/kavikt/LambdaTypeName$Companion;Lio/github/kavikt/TypeName;[Lio/github/kavikt/TypeName;Lio/github/kavikt/TypeName;ILjava/lang/Object;)Lio/github/kavikt/LambdaTypeName;
+}
+
+public final class io/github/kavikt/MemberName {
+	public static final field Companion Lio/github/kavikt/MemberName$Companion;
+	public fun <init> (Lio/github/kavikt/ClassName;Lio/github/kavikt/KOperator;)V
+	public fun <init> (Lio/github/kavikt/ClassName;Ljava/lang/String;)V
+	public fun <init> (Lio/github/kavikt/ClassName;Ljava/lang/String;Z)V
+	public fun <init> (Ljava/lang/String;Lio/github/kavikt/KOperator;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Z)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lio/github/kavikt/ClassName;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lio/github/kavikt/KOperator;
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Lio/github/kavikt/ClassName;Ljava/lang/String;Lio/github/kavikt/KOperator;Z)Lio/github/kavikt/MemberName;
+	public static synthetic fun copy$default (Lio/github/kavikt/MemberName;Ljava/lang/String;Lio/github/kavikt/ClassName;Ljava/lang/String;Lio/github/kavikt/KOperator;ZILjava/lang/Object;)Lio/github/kavikt/MemberName;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCanonicalName ()Ljava/lang/String;
+	public final fun getEnclosingClassName ()Lio/github/kavikt/ClassName;
+	public final fun getOperator ()Lio/github/kavikt/KOperator;
+	public final fun getPackageName ()Ljava/lang/String;
+	public final fun getSimpleName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isExtension ()Z
+	public static final synthetic fun member (Lio/github/kavikt/ClassName;Ljava/lang/String;)Lio/github/kavikt/MemberName;
+	public final fun reference ()Lio/github/kavikt/CodeBlock;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/MemberName$Companion {
+	public final synthetic fun member (Lio/github/kavikt/ClassName;Ljava/lang/String;)Lio/github/kavikt/MemberName;
+}
+
+public final class io/github/kavikt/MemberNames {
+	public static final fun get (Ljava/lang/Class;Ljava/lang/String;)Lio/github/kavikt/MemberName;
+	public static final fun get (Lkotlin/reflect/KClass;Ljava/lang/String;)Lio/github/kavikt/MemberName;
+}
+
+public abstract interface class io/github/kavikt/MemberSpecHolder {
+	public abstract fun getFunSpecs ()Ljava/util/List;
+	public abstract fun getPropertySpecs ()Ljava/util/List;
+}
+
+public abstract interface class io/github/kavikt/MemberSpecHolder$Builder {
+	public abstract fun addFunction (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addFunctions (Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperties (Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public abstract fun addProperty (Lio/github/kavikt/PropertySpec;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperty (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperty (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/MemberSpecHolder$Builder;
+}
+
+public final class io/github/kavikt/MemberSpecHolders {
+	public static final fun addProperty (Lio/github/kavikt/MemberSpecHolder$Builder;Ljava/lang/String;Ljava/lang/reflect/Type;Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public static final fun addProperty (Lio/github/kavikt/MemberSpecHolder$Builder;Ljava/lang/String;Ljava/lang/reflect/Type;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public static final fun addProperty (Lio/github/kavikt/MemberSpecHolder$Builder;Ljava/lang/String;Lkotlin/reflect/KClass;Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public static final fun addProperty (Lio/github/kavikt/MemberSpecHolder$Builder;Ljava/lang/String;Lkotlin/reflect/KClass;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/MemberSpecHolder$Builder;
+}
+
+public final class io/github/kavikt/NameAllocator {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public final fun contains (Ljava/lang/Object;)Z
+	public final fun copy ()Lio/github/kavikt/NameAllocator;
+	public final fun get (Ljava/lang/Object;)Ljava/lang/String;
+	public final fun newName (Ljava/lang/String;)Ljava/lang/String;
+	public final fun newName (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;
+	public static synthetic fun newName$default (Lio/github/kavikt/NameAllocator;Ljava/lang/String;Ljava/lang/Object;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public abstract interface class io/github/kavikt/OriginatingElementsHolder {
+	public abstract fun getOriginatingElements ()Ljava/util/List;
+}
+
+public abstract interface class io/github/kavikt/OriginatingElementsHolder$Builder {
+	public fun addOriginatingElement (Ljavax/lang/model/element/Element;)Lio/github/kavikt/OriginatingElementsHolder$Builder;
+	public abstract fun getOriginatingElements ()Ljava/util/List;
+}
+
+public final class io/github/kavikt/OriginatingElementsHolder$Builder$DefaultImpls {
+	public static fun addOriginatingElement (Lio/github/kavikt/OriginatingElementsHolder$Builder;Ljavax/lang/model/element/Element;)Lio/github/kavikt/OriginatingElementsHolder$Builder;
+}
+
+public final class io/github/kavikt/ParameterSpec : io/github/kavikt/Annotatable, io/github/kavikt/Documentable, io/github/kavikt/Taggable {
+	public static final field Companion Lio/github/kavikt/ParameterSpec$Companion;
+	public fun <init> (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)V
+	public fun <init> (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)V
+	public static final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/ParameterSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getAnnotations ()Ljava/util/List;
+	public final fun getDefaultValue ()Lio/github/kavikt/CodeBlock;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getModifiers ()Ljava/util/Set;
+	public final fun getName ()Ljava/lang/String;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getType ()Lio/github/kavikt/TypeName;
+	public fun hashCode ()I
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder (Ljava/lang/String;Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static synthetic fun toBuilder$default (Lio/github/kavikt/ParameterSpec;Ljava/lang/String;Lio/github/kavikt/TypeName;ILjava/lang/Object;)Lio/github/kavikt/ParameterSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+	public static final fun unnamed (Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterSpec;
+}
+
+public final class io/github/kavikt/ParameterSpec$Builder : io/github/kavikt/Annotatable$Builder, io/github/kavikt/Documentable$Builder, io/github/kavikt/Taggable$Builder {
+	public synthetic fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/ParameterSpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/ParameterSpec$Builder;
+	public synthetic fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public synthetic fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/ParameterSpec$Builder;
+	public synthetic fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/ParameterSpec$Builder;
+	public final fun addModifiers (Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public final fun addModifiers ([Lio/github/kavikt/KModifier;)Lio/github/kavikt/ParameterSpec$Builder;
+	public final fun build ()Lio/github/kavikt/ParameterSpec;
+	public final fun defaultValue (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/ParameterSpec$Builder;
+	public final fun defaultValue (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/ParameterSpec$Builder;
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun getModifiers ()Ljava/util/List;
+	public fun getTags ()Ljava/util/Map;
+}
+
+public final class io/github/kavikt/ParameterSpec$Companion {
+	public final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/ParameterSpec$Builder;
+	public final fun unnamed (Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterSpec;
+}
+
+public final class io/github/kavikt/ParameterSpecs {
+	public static final fun builder (Lio/github/kavikt/ParameterSpec$Companion;Ljava/lang/String;Ljava/lang/reflect/Type;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/ParameterSpec$Companion;Ljava/lang/String;Ljava/lang/reflect/Type;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/ParameterSpec$Companion;Ljava/lang/String;Lkotlin/reflect/KClass;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/ParameterSpec$Companion;Ljava/lang/String;Lkotlin/reflect/KClass;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static final fun get (Lio/github/kavikt/ParameterSpec$Companion;Ljavax/lang/model/element/VariableElement;)Lio/github/kavikt/ParameterSpec;
+	public static final fun jvmModifiers (Lio/github/kavikt/ParameterSpec$Builder;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterSpec$Builder;
+	public static final fun parametersOf (Lio/github/kavikt/ParameterSpec$Companion;Ljavax/lang/model/element/ExecutableElement;)Ljava/util/List;
+	public static final fun unnamed (Lio/github/kavikt/ParameterSpec$Companion;Ljava/lang/reflect/Type;)Lio/github/kavikt/ParameterSpec;
+	public static final fun unnamed (Lio/github/kavikt/ParameterSpec$Companion;Lkotlin/reflect/KClass;)Lio/github/kavikt/ParameterSpec;
+}
+
+public final class io/github/kavikt/ParameterizedTypeName : io/github/kavikt/TypeName {
+	public static final field Companion Lio/github/kavikt/ParameterizedTypeName$Companion;
+	public fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/ParameterizedTypeName;
+	public synthetic fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public final fun copy (ZLjava/util/List;Ljava/util/Map;Ljava/util/List;)Lio/github/kavikt/ParameterizedTypeName;
+	public static synthetic fun copy$default (Lio/github/kavikt/ParameterizedTypeName;ZLjava/util/List;Ljava/util/Map;Ljava/util/List;ILjava/lang/Object;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Lio/github/kavikt/ClassName;Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Lio/github/kavikt/ClassName;Ljava/util/List;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Lio/github/kavikt/ClassName;[Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterizedTypeName;
+	public final fun getRawType ()Lio/github/kavikt/ClassName;
+	public final fun getTypeArguments ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun nestedClass (Ljava/lang/String;Ljava/util/List;)Lio/github/kavikt/ParameterizedTypeName;
+	public final fun plusParameter (Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterizedTypeName;
+}
+
+public final class io/github/kavikt/ParameterizedTypeName$Companion {
+	public final fun get (Lio/github/kavikt/ClassName;Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterizedTypeName;
+	public final fun get (Lio/github/kavikt/ClassName;Ljava/util/List;)Lio/github/kavikt/ParameterizedTypeName;
+	public final fun get (Lio/github/kavikt/ClassName;[Lio/github/kavikt/TypeName;)Lio/github/kavikt/ParameterizedTypeName;
+}
+
+public final class io/github/kavikt/ParameterizedTypeNames {
+	public static final fun asTypeName (Lkotlin/reflect/KType;)Lio/github/kavikt/TypeName;
+	public static final fun asTypeNameOrNull (Lkotlin/reflect/KType;)Lio/github/kavikt/TypeName;
+	public static final fun get (Ljava/lang/Class;Ljava/lang/Class;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Ljava/lang/Class;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Ljava/lang/Class;[Ljava/lang/reflect/Type;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Ljava/lang/reflect/ParameterizedType;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Lkotlin/reflect/KClass;Ljava/lang/Iterable;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun get (Lkotlin/reflect/KClass;[Lkotlin/reflect/KClass;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun plusParameter (Lio/github/kavikt/ParameterizedTypeName;Ljava/lang/Class;)Lio/github/kavikt/ParameterizedTypeName;
+	public static final fun plusParameter (Lio/github/kavikt/ParameterizedTypeName;Lkotlin/reflect/KClass;)Lio/github/kavikt/ParameterizedTypeName;
+}
+
+public final class io/github/kavikt/PropertySpec : io/github/kavikt/Annotatable, io/github/kavikt/ContextParameterizable, io/github/kavikt/ContextReceivable, io/github/kavikt/Documentable, io/github/kavikt/OriginatingElementsHolder, io/github/kavikt/Taggable {
+	public static final field Companion Lio/github/kavikt/PropertySpec$Companion;
+	public static final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/PropertySpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getAnnotations ()Ljava/util/List;
+	public final fun getBackingFieldInitializer ()Lio/github/kavikt/CodeBlock;
+	public final fun getBackingFieldType ()Lio/github/kavikt/TypeName;
+	public fun getContextParameters ()Ljava/util/List;
+	public fun getContextReceiverTypes ()Ljava/util/List;
+	public final fun getDelegated ()Z
+	public final fun getGetter ()Lio/github/kavikt/FunSpec;
+	public final fun getInitializer ()Lio/github/kavikt/CodeBlock;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getModifiers ()Ljava/util/Set;
+	public final fun getMutable ()Z
+	public final fun getName ()Ljava/lang/String;
+	public fun getOriginatingElements ()Ljava/util/List;
+	public final fun getReceiverType ()Lio/github/kavikt/TypeName;
+	public final fun getSetter ()Lio/github/kavikt/FunSpec;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getType ()Lio/github/kavikt/TypeName;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder ()Lio/github/kavikt/PropertySpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;Lio/github/kavikt/TypeName;)Lio/github/kavikt/PropertySpec$Builder;
+	public static synthetic fun toBuilder$default (Lio/github/kavikt/PropertySpec;Ljava/lang/String;Lio/github/kavikt/TypeName;ILjava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/PropertySpec$Builder : io/github/kavikt/Annotatable$Builder, io/github/kavikt/ContextParameterizable$Builder, io/github/kavikt/ContextReceivable$Builder, io/github/kavikt/Documentable$Builder, io/github/kavikt/OriginatingElementsHolder$Builder, io/github/kavikt/Taggable$Builder {
+	public synthetic fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/PropertySpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/PropertySpec$Builder;
+	public synthetic fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public synthetic fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/PropertySpec$Builder;
+	public synthetic fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun addModifiers (Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun addModifiers ([Lio/github/kavikt/KModifier;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun addTypeVariable (Lio/github/kavikt/TypeVariableName;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun addTypeVariables (Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun backingFieldInitializer (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun backingFieldInitializer (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun backingFieldType (Lio/github/kavikt/TypeName;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun build ()Lio/github/kavikt/PropertySpec;
+	public final fun delegate (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun delegate (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun getModifiers ()Ljava/util/List;
+	public fun getOriginatingElements ()Ljava/util/List;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public final fun getter (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun initializer (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun initializer (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun mutable (Z)Lio/github/kavikt/PropertySpec$Builder;
+	public static synthetic fun mutable$default (Lio/github/kavikt/PropertySpec$Builder;ZILjava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun receiver (Lio/github/kavikt/TypeName;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun setter (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/PropertySpec$Builder;
+}
+
+public final class io/github/kavikt/PropertySpec$Companion {
+	public final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/PropertySpec$Builder;
+}
+
+public final class io/github/kavikt/PropertySpecs {
+	public static final fun backingFieldType (Lio/github/kavikt/PropertySpec$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun builder (Lio/github/kavikt/PropertySpec$Companion;Ljava/lang/String;Ljava/lang/reflect/Type;Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun builder (Lio/github/kavikt/PropertySpec$Companion;Ljava/lang/String;Ljava/lang/reflect/Type;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun builder (Lio/github/kavikt/PropertySpec$Companion;Ljava/lang/String;Lkotlin/reflect/KClass;Ljava/lang/Iterable;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun builder (Lio/github/kavikt/PropertySpec$Companion;Ljava/lang/String;Lkotlin/reflect/KClass;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/PropertySpec$Builder;Ljava/lang/reflect/Type;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun receiver (Lio/github/kavikt/PropertySpec$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/PropertySpec$Builder;
+}
+
+public abstract interface class io/github/kavikt/Taggable {
+	public fun getTags ()Ljava/util/Map;
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+}
+
+public abstract interface class io/github/kavikt/Taggable$Builder {
+	public abstract fun getTags ()Ljava/util/Map;
+	public fun tag (Lkotlin/reflect/KClass;Ljava/lang/Object;)Lio/github/kavikt/Taggable$Builder;
+}
+
+public final class io/github/kavikt/Taggable$Builder$DefaultImpls {
+	public static fun tag (Lio/github/kavikt/Taggable$Builder;Lkotlin/reflect/KClass;Ljava/lang/Object;)Lio/github/kavikt/Taggable$Builder;
+}
+
+public final class io/github/kavikt/Taggable$DefaultImpls {
+	public static fun getTags (Lio/github/kavikt/Taggable;)Ljava/util/Map;
+	public static fun tag (Lio/github/kavikt/Taggable;Lkotlin/reflect/KClass;)Ljava/lang/Object;
+}
+
+public final class io/github/kavikt/Taggables {
+	public static final fun tag (Lio/github/kavikt/Taggable$Builder;Ljava/lang/Class;Ljava/lang/Object;)Lio/github/kavikt/Taggable$Builder;
+	public static final fun tag (Lio/github/kavikt/Taggable;Ljava/lang/Class;)Ljava/lang/Object;
+}
+
+public final class io/github/kavikt/TypeAliasSpec : io/github/kavikt/Annotatable, io/github/kavikt/Documentable, io/github/kavikt/Taggable {
+	public static final field Companion Lio/github/kavikt/TypeAliasSpec$Companion;
+	public static final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getModifiers ()Ljava/util/Set;
+	public final fun getName ()Ljava/lang/String;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getType ()Lio/github/kavikt/TypeName;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder ()Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun toBuilder (Ljava/lang/String;Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public static synthetic fun toBuilder$default (Lio/github/kavikt/TypeAliasSpec;Ljava/lang/String;Lio/github/kavikt/TypeName;ILjava/lang/Object;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/TypeAliasSpec$Builder : io/github/kavikt/Annotatable$Builder, io/github/kavikt/Documentable$Builder, io/github/kavikt/Taggable$Builder {
+	public synthetic fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public synthetic fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public synthetic fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public synthetic fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun addModifiers (Ljava/lang/Iterable;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun addModifiers ([Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun addTypeVariable (Lio/github/kavikt/TypeVariableName;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun addTypeVariables (Ljava/lang/Iterable;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public final fun build ()Lio/github/kavikt/TypeAliasSpec;
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun getModifiers ()Ljava/util/Set;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeVariables ()Ljava/util/Set;
+}
+
+public final class io/github/kavikt/TypeAliasSpec$Companion {
+	public final fun builder (Ljava/lang/String;Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeAliasSpec$Builder;
+}
+
+public final class io/github/kavikt/TypeAliasSpecs {
+	public static final fun builder (Lio/github/kavikt/TypeAliasSpec$Companion;Ljava/lang/String;Ljava/lang/reflect/Type;)Lio/github/kavikt/TypeAliasSpec$Builder;
+	public static final fun builder (Lio/github/kavikt/TypeAliasSpec$Companion;Ljava/lang/String;Lkotlin/reflect/KClass;)Lio/github/kavikt/TypeAliasSpec$Builder;
+}
+
+public abstract class io/github/kavikt/TypeName : io/github/kavikt/Annotatable, io/github/kavikt/Taggable {
+	public static final field Companion Lio/github/kavikt/TypeName$Companion;
+	public synthetic fun <init> (ZLjava/util/List;Ljava/util/Map;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun copy (ZLjava/util/List;)Lio/github/kavikt/TypeName;
+	public abstract fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public static synthetic fun copy$default (Lio/github/kavikt/TypeName;ZLjava/util/List;ILjava/lang/Object;)Lio/github/kavikt/TypeName;
+	public static synthetic fun copy$default (Lio/github/kavikt/TypeName;ZLjava/util/List;Ljava/util/Map;ILjava/lang/Object;)Lio/github/kavikt/TypeName;
+	public final fun equals (Ljava/lang/Object;)Z
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getTags ()Ljava/util/Map;
+	public fun hashCode ()I
+	public final fun isAnnotated ()Z
+	public final fun isNullable ()Z
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kavikt/TypeName$Companion {
+}
+
+public final class io/github/kavikt/TypeName_jvmKt {
+	public static final fun get (Ljava/lang/reflect/Type;)Lio/github/kavikt/TypeName;
+	public static final fun get (Ljavax/lang/model/type/TypeMirror;)Lio/github/kavikt/TypeName;
+}
+
+public final class io/github/kavikt/TypeName_jvmNativeKt {
+	public static final fun annotated (Lio/github/kavikt/TypeName;[Lkotlin/reflect/KClass;)Lio/github/kavikt/TypeName;
+	public static final fun get (Lkotlin/reflect/KClass;)Lio/github/kavikt/ClassName;
+}
+
+public final class io/github/kavikt/TypeNames {
+	public static final field ANNOTATION Lio/github/kavikt/ClassName;
+	public static final field ANY Lio/github/kavikt/ClassName;
+	public static final field ARRAY Lio/github/kavikt/ClassName;
+	public static final field BOOLEAN Lio/github/kavikt/ClassName;
+	public static final field BOOLEAN_ARRAY Lio/github/kavikt/ClassName;
+	public static final field BYTE Lio/github/kavikt/ClassName;
+	public static final field BYTE_ARRAY Lio/github/kavikt/ClassName;
+	public static final field CHAR Lio/github/kavikt/ClassName;
+	public static final field CHAR_ARRAY Lio/github/kavikt/ClassName;
+	public static final field CHAR_SEQUENCE Lio/github/kavikt/ClassName;
+	public static final field COLLECTION Lio/github/kavikt/ClassName;
+	public static final field COMPARABLE Lio/github/kavikt/ClassName;
+	public static final field DOUBLE Lio/github/kavikt/ClassName;
+	public static final field DOUBLE_ARRAY Lio/github/kavikt/ClassName;
+	public static final field DYNAMIC Lio/github/kavikt/Dynamic;
+	public static final field ENUM Lio/github/kavikt/ClassName;
+	public static final field FLOAT Lio/github/kavikt/ClassName;
+	public static final field FLOAT_ARRAY Lio/github/kavikt/ClassName;
+	public static final field INT Lio/github/kavikt/ClassName;
+	public static final field INT_ARRAY Lio/github/kavikt/ClassName;
+	public static final field ITERABLE Lio/github/kavikt/ClassName;
+	public static final field LIST Lio/github/kavikt/ClassName;
+	public static final field LONG Lio/github/kavikt/ClassName;
+	public static final field LONG_ARRAY Lio/github/kavikt/ClassName;
+	public static final field MAP Lio/github/kavikt/ClassName;
+	public static final field MAP_ENTRY Lio/github/kavikt/ClassName;
+	public static final field MUTABLE_COLLECTION Lio/github/kavikt/ClassName;
+	public static final field MUTABLE_ITERABLE Lio/github/kavikt/ClassName;
+	public static final field MUTABLE_LIST Lio/github/kavikt/ClassName;
+	public static final field MUTABLE_MAP Lio/github/kavikt/ClassName;
+	public static final field MUTABLE_MAP_ENTRY Lio/github/kavikt/ClassName;
+	public static final field MUTABLE_SET Lio/github/kavikt/ClassName;
+	public static final field NOTHING Lio/github/kavikt/ClassName;
+	public static final field NUMBER Lio/github/kavikt/ClassName;
+	public static final field SET Lio/github/kavikt/ClassName;
+	public static final field SHORT Lio/github/kavikt/ClassName;
+	public static final field SHORT_ARRAY Lio/github/kavikt/ClassName;
+	public static final field STAR Lio/github/kavikt/WildcardTypeName;
+	public static final field STRING Lio/github/kavikt/ClassName;
+	public static final field THROWABLE Lio/github/kavikt/ClassName;
+	public static final field UNIT Lio/github/kavikt/ClassName;
+	public static final field U_BYTE Lio/github/kavikt/ClassName;
+	public static final field U_BYTE_ARRAY Lio/github/kavikt/ClassName;
+	public static final field U_INT Lio/github/kavikt/ClassName;
+	public static final field U_INT_ARRAY Lio/github/kavikt/ClassName;
+	public static final field U_LONG Lio/github/kavikt/ClassName;
+	public static final field U_LONG_ARRAY Lio/github/kavikt/ClassName;
+	public static final field U_SHORT Lio/github/kavikt/ClassName;
+	public static final field U_SHORT_ARRAY Lio/github/kavikt/ClassName;
+	public static final fun annotated (Lio/github/kavikt/TypeName;Ljava/util/List;)Lio/github/kavikt/TypeName;
+	public static final fun annotated (Lio/github/kavikt/TypeName;[Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/TypeName;
+	public static final fun annotated (Lio/github/kavikt/TypeName;[Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeName;
+}
+
+public final class io/github/kavikt/TypeSpec : io/github/kavikt/Annotatable, io/github/kavikt/ContextReceivable, io/github/kavikt/Documentable, io/github/kavikt/MemberSpecHolder, io/github/kavikt/OriginatingElementsHolder, io/github/kavikt/Taggable, io/github/kavikt/TypeSpecHolder {
+	public static final field Companion Lio/github/kavikt/TypeSpec$Companion;
+	public static final fun annotationBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun annotationBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun anonymousClassBuilder ()Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun classBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun classBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun companionObjectBuilder ()Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun companionObjectBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun enumBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun enumBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public static final fun expectClassBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun expectClassBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun funInterfaceBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun funInterfaceBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun getAnnotationSpecs ()Ljava/util/List;
+	public fun getAnnotations ()Ljava/util/List;
+	public fun getContextReceiverTypes ()Ljava/util/List;
+	public final fun getEnumConstants ()Ljava/util/Map;
+	public fun getFunSpecs ()Ljava/util/List;
+	public final fun getInitializerBlock ()Lio/github/kavikt/CodeBlock;
+	public final fun getInitializerIndex ()I
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock;
+	public final fun getKind ()Lio/github/kavikt/TypeSpec$Kind;
+	public final fun getModifiers ()Ljava/util/Set;
+	public final fun getName ()Ljava/lang/String;
+	public fun getOriginatingElements ()Ljava/util/List;
+	public final fun getPrimaryConstructor ()Lio/github/kavikt/FunSpec;
+	public fun getPropertySpecs ()Ljava/util/List;
+	public final fun getSuperclass ()Lio/github/kavikt/TypeName;
+	public final fun getSuperclassConstructorParameters ()Ljava/util/List;
+	public final fun getSuperinterfaces ()Ljava/util/Map;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeAliasSpecs ()Ljava/util/List;
+	public fun getTypeSpecs ()Ljava/util/List;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public fun hashCode ()I
+	public static final fun interfaceBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun interfaceBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun isAnnotation ()Z
+	public final fun isAnonymousClass ()Z
+	public final fun isCompanion ()Z
+	public final fun isEnum ()Z
+	public final fun isFunctionalInterface ()Z
+	public static final fun objectBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun objectBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public fun tag (Lkotlin/reflect/KClass;)Ljava/lang/Object;
+	public final fun toBuilder ()Lio/github/kavikt/TypeSpec$Builder;
+	public final fun toBuilder (Lio/github/kavikt/TypeSpec$Kind;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun toBuilder (Lio/github/kavikt/TypeSpec$Kind;Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun toBuilder$default (Lio/github/kavikt/TypeSpec;Lio/github/kavikt/TypeSpec$Kind;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+	public static final fun valueClassBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+}
+
+public final class io/github/kavikt/TypeSpec$Builder : io/github/kavikt/Annotatable$Builder, io/github/kavikt/ContextReceivable$Builder, io/github/kavikt/Documentable$Builder, io/github/kavikt/MemberSpecHolder$Builder, io/github/kavikt/OriginatingElementsHolder$Builder, io/github/kavikt/Taggable$Builder, io/github/kavikt/TypeSpecHolder$Builder {
+	public synthetic fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/AnnotationSpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotation (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/Annotatable$Builder;
+	public fun addAnnotations (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addEnumConstant (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addEnumConstant (Ljava/lang/String;Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun addEnumConstant$default (Lio/github/kavikt/TypeSpec$Builder;Ljava/lang/String;Lio/github/kavikt/TypeSpec;ILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addFunction (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addFunction (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addFunctions (Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addFunctions (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addInitializerBlock (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;
+	public fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addModifiers (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addModifiers ([Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addProperties (Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperties (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addProperty (Lio/github/kavikt/PropertySpec;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperty (Lio/github/kavikt/PropertySpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addProperty (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperty (Ljava/lang/String;Lio/github/kavikt/TypeName;Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addProperty (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/MemberSpecHolder$Builder;
+	public fun addProperty (Ljava/lang/String;Lio/github/kavikt/TypeName;[Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addSuperclassConstructorParameter (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addSuperclassConstructorParameter (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addSuperinterface (Lio/github/kavikt/TypeName;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addSuperinterface (Lio/github/kavikt/TypeName;Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun addSuperinterface$default (Lio/github/kavikt/TypeSpec$Builder;Lio/github/kavikt/TypeName;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addSuperinterfaces (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public fun addType (Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addType (Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/TypeSpecHolder$Builder;
+	public final fun addTypeAlias (Lio/github/kavikt/TypeAliasSpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addTypeVariable (Lio/github/kavikt/TypeVariableName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun addTypeVariables (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public fun addTypes (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpec$Builder;
+	public synthetic fun addTypes (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpecHolder$Builder;
+	public final fun build ()Lio/github/kavikt/TypeSpec;
+	public final fun getAnnotationSpecs ()Ljava/util/List;
+	public fun getAnnotations ()Ljava/util/List;
+	public final fun getEnumConstants ()Ljava/util/Map;
+	public final fun getFunSpecs ()Ljava/util/List;
+	public final fun getInitializerIndex ()I
+	public fun getKdoc ()Lio/github/kavikt/CodeBlock$Builder;
+	public final fun getModifiers ()Ljava/util/Set;
+	public fun getOriginatingElements ()Ljava/util/List;
+	public final fun getPropertySpecs ()Ljava/util/List;
+	public final fun getSuperclassConstructorParameters ()Ljava/util/List;
+	public final fun getSuperinterfaces ()Ljava/util/Map;
+	public fun getTags ()Ljava/util/Map;
+	public final fun getTypeAliasSpecs ()Ljava/util/List;
+	public final fun getTypeSpecs ()Ljava/util/List;
+	public final fun getTypeVariables ()Ljava/util/List;
+	public final fun primaryConstructor (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun setInitializerIndex (I)V
+	public final fun superclass (Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeSpec$Builder;
+}
+
+public final class io/github/kavikt/TypeSpec$Companion {
+	public final fun annotationBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun annotationBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun anonymousClassBuilder ()Lio/github/kavikt/TypeSpec$Builder;
+	public final fun classBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun classBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun companionObjectBuilder ()Lio/github/kavikt/TypeSpec$Builder;
+	public final fun companionObjectBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun companionObjectBuilder$default (Lio/github/kavikt/TypeSpec$Companion;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun enumBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun enumBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun expectClassBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun expectClassBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun funInterfaceBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun funInterfaceBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun interfaceBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun interfaceBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun objectBuilder (Lio/github/kavikt/ClassName;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun objectBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public final fun valueClassBuilder (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+}
+
+public final class io/github/kavikt/TypeSpec$Kind : java/lang/Enum {
+	public static final field CLASS Lio/github/kavikt/TypeSpec$Kind;
+	public static final field INTERFACE Lio/github/kavikt/TypeSpec$Kind;
+	public static final field OBJECT Lio/github/kavikt/TypeSpec$Kind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Kind;
+	public static fun values ()[Lio/github/kavikt/TypeSpec$Kind;
+}
+
+public abstract interface class io/github/kavikt/TypeSpecHolder {
+	public abstract fun getTypeSpecs ()Ljava/util/List;
+}
+
+public abstract interface class io/github/kavikt/TypeSpecHolder$Builder {
+	public abstract fun addType (Lio/github/kavikt/TypeSpec;)Lio/github/kavikt/TypeSpecHolder$Builder;
+	public fun addTypes (Ljava/lang/Iterable;)Lio/github/kavikt/TypeSpecHolder$Builder;
+}
+
+public final class io/github/kavikt/TypeSpecs {
+	public static final fun addSuperinterface (Lio/github/kavikt/TypeSpec$Builder;Ljava/lang/reflect/Type;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun addSuperinterface (Lio/github/kavikt/TypeSpec$Builder;Ljava/lang/reflect/Type;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun addSuperinterface (Lio/github/kavikt/TypeSpec$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun addSuperinterface (Lio/github/kavikt/TypeSpec$Builder;Lkotlin/reflect/KClass;Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun addSuperinterface (Lio/github/kavikt/TypeSpec$Builder;Lkotlin/reflect/KClass;Ljava/lang/String;)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun addSuperinterface$default (Lio/github/kavikt/TypeSpec$Builder;Ljava/lang/reflect/Type;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun addSuperinterface$default (Lio/github/kavikt/TypeSpec$Builder;Lkotlin/reflect/KClass;Lio/github/kavikt/CodeBlock;ILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun superclass (Lio/github/kavikt/TypeSpec$Builder;Ljava/lang/reflect/Type;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun superclass (Lio/github/kavikt/TypeSpec$Builder;Lkotlin/reflect/KClass;)Lio/github/kavikt/TypeSpec$Builder;
+}
+
+public final class io/github/kavikt/TypeVariableName : io/github/kavikt/TypeName {
+	public static final field Companion Lio/github/kavikt/TypeVariableName$Companion;
+	public final fun copy (ZLjava/util/List;Ljava/util/List;ZLjava/util/Map;)Lio/github/kavikt/TypeVariableName;
+	public synthetic fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun copy$default (Lio/github/kavikt/TypeVariableName;ZLjava/util/List;Ljava/util/List;ZLjava/util/Map;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljava/lang/String;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljava/lang/String;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljava/lang/String;Ljava/util/List;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljava/lang/String;Ljava/util/List;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljava/lang/String;[Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljava/lang/String;[Lio/github/kavikt/TypeName;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public final fun getBounds ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getVariance ()Lio/github/kavikt/KModifier;
+	public fun hashCode ()I
+	public final fun isReified ()Z
+}
+
+public final class io/github/kavikt/TypeVariableName$Companion {
+	public final fun get (Ljava/lang/String;)Lio/github/kavikt/TypeVariableName;
+	public final fun get (Ljava/lang/String;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public final fun get (Ljava/lang/String;Ljava/util/List;)Lio/github/kavikt/TypeVariableName;
+	public final fun get (Ljava/lang/String;Ljava/util/List;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public final fun get (Ljava/lang/String;[Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeVariableName;
+	public final fun get (Ljava/lang/String;[Lio/github/kavikt/TypeName;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun get$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun get$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/util/List;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun get$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Lio/github/kavikt/TypeName;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+}
+
+public final class io/github/kavikt/TypeVariableNames {
+	public static final fun asTypeVariableName (Lkotlin/reflect/KTypeParameter;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Ljava/lang/reflect/Type;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Ljava/lang/reflect/Type;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Lkotlin/reflect/KClass;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Lkotlin/reflect/KClass;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljavax/lang/model/element/TypeParameterElement;)Lio/github/kavikt/TypeVariableName;
+	public static final fun get (Ljavax/lang/model/type/TypeVariable;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun get$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Ljava/lang/reflect/Type;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun get$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;[Lkotlin/reflect/KClass;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+	public static final fun getWithClasses (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/lang/Iterable;)Lio/github/kavikt/TypeVariableName;
+	public static final fun getWithClasses (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/lang/Iterable;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun getWithClasses$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/lang/Iterable;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+	public static final fun getWithTypes (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/lang/Iterable;)Lio/github/kavikt/TypeVariableName;
+	public static final fun getWithTypes (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/lang/Iterable;Lio/github/kavikt/KModifier;)Lio/github/kavikt/TypeVariableName;
+	public static synthetic fun getWithTypes$default (Lio/github/kavikt/TypeVariableName$Companion;Ljava/lang/String;Ljava/lang/Iterable;Lio/github/kavikt/KModifier;ILjava/lang/Object;)Lio/github/kavikt/TypeVariableName;
+}
+
+public final class io/github/kavikt/WildcardTypeName : io/github/kavikt/TypeName {
+	public static final field Companion Lio/github/kavikt/WildcardTypeName$Companion;
+	public static final fun consumerOf (Lio/github/kavikt/TypeName;)Lio/github/kavikt/WildcardTypeName;
+	public synthetic fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/TypeName;
+	public fun copy (ZLjava/util/List;Ljava/util/Map;)Lio/github/kavikt/WildcardTypeName;
+	public final fun getInTypes ()Ljava/util/List;
+	public final fun getOutTypes ()Ljava/util/List;
+	public fun hashCode ()I
+	public static final fun producerOf (Lio/github/kavikt/TypeName;)Lio/github/kavikt/WildcardTypeName;
+}
+
+public final class io/github/kavikt/WildcardTypeName$Companion {
+	public final fun consumerOf (Lio/github/kavikt/TypeName;)Lio/github/kavikt/WildcardTypeName;
+	public final fun producerOf (Lio/github/kavikt/TypeName;)Lio/github/kavikt/WildcardTypeName;
+}
+
+public final class io/github/kavikt/WildcardTypeNames {
+	public static final fun consumerOf (Lio/github/kavikt/WildcardTypeName$Companion;Ljava/lang/reflect/Type;)Lio/github/kavikt/WildcardTypeName;
+	public static final fun consumerOf (Lio/github/kavikt/WildcardTypeName$Companion;Lkotlin/reflect/KClass;)Lio/github/kavikt/WildcardTypeName;
+	public static final fun get (Ljava/lang/reflect/WildcardType;)Lio/github/kavikt/TypeName;
+	public static final fun get (Ljavax/lang/model/type/WildcardType;)Lio/github/kavikt/TypeName;
+	public static final fun producerOf (Lio/github/kavikt/WildcardTypeName$Companion;Ljava/lang/reflect/Type;)Lio/github/kavikt/WildcardTypeName;
+	public static final fun producerOf (Lio/github/kavikt/WildcardTypeName$Companion;Lkotlin/reflect/KClass;)Lio/github/kavikt/WildcardTypeName;
+}
+
+public final class io/github/kavikt/jvm/JvmAnnotations {
+	public static final synthetic fun jvmDefault (Lio/github/kavikt/FunSpec$Builder;)Lio/github/kavikt/FunSpec$Builder;
+	public static final synthetic fun jvmDefault (Lio/github/kavikt/PropertySpec$Builder;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun jvmField (Lio/github/kavikt/PropertySpec$Builder;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun jvmInline (Lio/github/kavikt/TypeSpec$Builder;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun jvmMultifileClass (Lio/github/kavikt/FileSpec$Builder;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun jvmName (Lio/github/kavikt/FileSpec$Builder;Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
+	public static final fun jvmName (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/String;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun jvmOverloads (Lio/github/kavikt/FunSpec$Builder;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun jvmRecord (Lio/github/kavikt/TypeSpec$Builder;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun jvmStatic (Lio/github/kavikt/FunSpec$Builder;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun jvmStatic (Lio/github/kavikt/PropertySpec$Builder;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun jvmSuppressWildcards (Lio/github/kavikt/FunSpec$Builder;Z)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun jvmSuppressWildcards (Lio/github/kavikt/PropertySpec$Builder;Z)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun jvmSuppressWildcards (Lio/github/kavikt/TypeName;Z)Lio/github/kavikt/TypeName;
+	public static final fun jvmSuppressWildcards (Lio/github/kavikt/TypeSpec$Builder;Z)Lio/github/kavikt/TypeSpec$Builder;
+	public static synthetic fun jvmSuppressWildcards$default (Lio/github/kavikt/FunSpec$Builder;ZILjava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public static synthetic fun jvmSuppressWildcards$default (Lio/github/kavikt/PropertySpec$Builder;ZILjava/lang/Object;)Lio/github/kavikt/PropertySpec$Builder;
+	public static synthetic fun jvmSuppressWildcards$default (Lio/github/kavikt/TypeName;ZILjava/lang/Object;)Lio/github/kavikt/TypeName;
+	public static synthetic fun jvmSuppressWildcards$default (Lio/github/kavikt/TypeSpec$Builder;ZILjava/lang/Object;)Lio/github/kavikt/TypeSpec$Builder;
+	public static final fun jvmWildcard (Lio/github/kavikt/TypeName;)Lio/github/kavikt/TypeName;
+	public static final fun strictfp (Lio/github/kavikt/FunSpec$Builder;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun synchronized (Lio/github/kavikt/FunSpec$Builder;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun throws (Lio/github/kavikt/FunSpec$Builder;Ljava/lang/Iterable;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun throws (Lio/github/kavikt/FunSpec$Builder;[Lio/github/kavikt/TypeName;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun throws (Lio/github/kavikt/FunSpec$Builder;[Ljava/lang/reflect/Type;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun throws (Lio/github/kavikt/FunSpec$Builder;[Lkotlin/reflect/KClass;)Lio/github/kavikt/FunSpec$Builder;
+	public static final fun transient (Lio/github/kavikt/PropertySpec$Builder;)Lio/github/kavikt/PropertySpec$Builder;
+	public static final fun volatile (Lio/github/kavikt/PropertySpec$Builder;)Lio/github/kavikt/PropertySpec$Builder;
+}
+
+public final class io/github/kavikt/tags/TypeAliasTag {
+	public fun <init> (Lio/github/kavikt/TypeName;)V
+	public final fun getAbbreviatedType ()Lio/github/kavikt/TypeName;
+}
+

@@ -19,7 +19,7 @@ plugins {
 
 tasks.jar {
   manifest {
-    attributes("Automatic-Module-Name" to "com.squareup.kotlinpoet.metadata")
+    attributes("Automatic-Module-Name" to "io.github.kavikt.metadata")
   }
 }
 
@@ -32,7 +32,7 @@ tasks.compileTestKotlin {
 dependencies {
   implementation(libs.autoCommon)
   api(libs.kotlin.metadata)
-  api(projects.kotlinpoet)
+  api(projects.kaviKt)
 
   testImplementation(libs.kotlin.junit)
   testImplementation(libs.assertk)

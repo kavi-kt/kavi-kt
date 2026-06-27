@@ -2,25 +2,9 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:recommended',
+    'group:all',
   ],
   semanticCommits: 'disabled',
-  packageRules: [
-    {
-      matchManagers: [
-        'pip_requirements',
-      ],
-      automerge: true,
-    },
-    {
-      matchManagers: [
-        'pip_requirements',
-      ],
-      groupName: 'MkDocs',
-      matchPackageNames: [
-        'mkdocs{/,}**',
-      ],
-    }
-  ],
   ignorePresets: [
     // Ensure we get the latest version and are not pinned to old versions.
     'workarounds:javaLTSVersions',
@@ -37,8 +21,18 @@
       ],
       datasourceTemplate: 'java-version',
       depNameTemplate: 'java',
-      // Only write the major version.
       extractVersionTemplate: '^(?<version>\\d+)',
     },
-  ]
+    // Keep the dependency versions shown in README.md in sync with published releases.
+    {
+      customType: 'regex',
+      fileMatch: [
+        '^README\\.md$',
+      ],
+      matchStrings: [
+        '"(?<depName>io\\.github\\.kavi-kt:[a-z-]+):(?<currentValue>[^"]+)"',
+      ],
+      datasourceTemplate: 'maven',
+    },
+  ],
 }

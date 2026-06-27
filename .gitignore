@@ -26,3 +26,10 @@ site
 obj
 
 .DS_Store
+
+.tmp/
+.local/
+.codegraph/
+.claude/
+CLAUDE.md
+.mcp.json

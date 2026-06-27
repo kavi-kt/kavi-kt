@@ -25,12 +25,12 @@ plugins {
 }
 
 include(
-  ":kotlinpoet",
+  ":kavi-kt",
   ":interop:kotlin-metadata",
   ":interop:ksp",
   ":interop:ksp:test-processor",
 )
 
-rootProject.name = "kotlinpoet-root"
+rootProject.name = "kavi-kt-root"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

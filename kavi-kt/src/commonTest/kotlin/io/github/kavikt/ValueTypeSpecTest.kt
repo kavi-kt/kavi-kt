@@ -1,0 +1,278 @@
+/*
+ * Copyright (C) 2021 Square, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.github.kavikt
+
+import assertk.assertFailure
+import assertk.assertThat
+import assertk.assertions.hasMessage
+import assertk.assertions.isEqualTo
+import assertk.assertions.isInstanceOf
+import io.github.kavikt.KModifier.INLINE
+import io.github.kavikt.KModifier.PRIVATE
+import io.github.kavikt.jvm.jvmInline
+import kotlin.test.Test
+
+class ValueTypeSpecTest {
+
+  private fun modifier(useValue: Boolean) = if (useValue) KModifier.VALUE else INLINE
+
+  private fun classBuilder(useValue: Boolean) =
+    if (useValue) {
+      TypeSpec.classBuilder("Guacamole").addModifiers(KModifier.VALUE)
+    } else {
+      TypeSpec.classBuilder("Guacamole").addModifiers(modifier(useValue))
+    }
+
+  @Test
+  fun validInlineClass() {
+    for (useValue in listOf(true, false)) {
+      val modifierString = modifier(useValue).keyword
+      val guacamole =
+        classBuilder(useValue)
+          .primaryConstructor(FunSpec.constructorBuilder().addParameter("avacado", STRING).build())
+          .addProperty(PropertySpec.builder("avacado", STRING).initializer("avacado").build())
+          .build()
+
+      assertThat(guacamole.toString())
+        .isEqualTo(
+          """
+        |public $modifierString class Guacamole(
+        |  public val avacado: kotlin.String,
+        |)
+        |
+        """
+            .trimMargin()
+        )
+    }
+  }
+
+  @Test
+  fun inlineClassWithInitBlock() {
+    for (useValue in listOf(true, false)) {
+      val modifierString = modifier(useValue).keyword
+      val guacamole =
+        classBuilder(useValue)
+          .primaryConstructor(FunSpec.constructorBuilder().addParameter("avacado", STRING).build())
+          .addProperty(PropertySpec.builder("avacado", STRING).initializer("avacado").build())
+          .addInitializerBlock(CodeBlock.EMPTY)
+          .build()
+
+      assertThat(guacamole.toString())
+        .isEqualTo(
+          """
+        |public $modifierString class Guacamole(
+        |  public val avacado: kotlin.String,
+        |) {
+        |  init {
+        |  }
+        |}
+        |
+        """
+            .trimMargin()
+        )
+    }
+  }
+
+  @Test
+  fun inlineClassWithSuperClass() {
+    for (useValue in listOf(true, false)) {
+      assertFailure {
+          classBuilder(useValue)
+            .primaryConstructor(
+              FunSpec.constructorBuilder().addParameter("avocado", STRING).build()
+            )
+            .addProperty(PropertySpec.builder("avocado", STRING).initializer("avocado").build())
+            .superclass(ClassName("io.github.kavikt", "InlineSuperClass"))
+            .build()
+        }
+        .isInstanceOf<IllegalStateException>()
+        .hasMessage("value/inline classes cannot have super classes")
+    }
+  }
+
+  @Test
+  fun inlineClassInheritsFromInterface() {
+    for (useValue in listOf(true, false)) {
+      val modifierString = modifier(useValue).keyword
+      val guacamole =
+        classBuilder(useValue)
+          .primaryConstructor(FunSpec.constructorBuilder().addParameter("avocado", STRING).build())
+          .addProperty(PropertySpec.builder("avocado", STRING).initializer("avocado").build())
+          .addSuperinterface(
+            ClassName("io.github.kavikt", "ValueTypeSpecTest", "InlineSuperInterface")
+          )
+          .build()
+
+      assertThat(guacamole.toString())
+        .isEqualTo(
+          """
+        |public $modifierString class Guacamole(
+        |  public val avocado: kotlin.String,
+        |) : io.github.kavikt.ValueTypeSpecTest.InlineSuperInterface
+        |
+        """
+            .trimMargin()
+        )
+    }
+  }
+
+  @Test
+  fun inlineClassWithoutBackingProperty() {
+    for (useValue in listOf(true, false)) {
+      assertFailure {
+          classBuilder(useValue)
+            .primaryConstructor(
+              FunSpec.constructorBuilder().addParameter("avocado", STRING).build()
+            )
+            .addProperty("garlic", STRING)
+            .build()
+        }
+        .isInstanceOf<IllegalStateException>()
+        .hasMessage("value/inline classes must only have final read-only (val) property parameters")
+    }
+  }
+
+  @Test
+  fun inlineClassWithoutProperties() {
+    for (useValue in listOf(true, false)) {
+      assertFailure {
+          classBuilder(useValue)
+            .primaryConstructor(
+              FunSpec.constructorBuilder().addParameter("avocado", STRING).build()
+            )
+            .build()
+        }
+        .isInstanceOf<IllegalStateException>()
+        .hasMessage("value/inline classes must have at least 1 property")
+    }
+  }
+
+  @Test
+  fun inlineClassWithMutableProperties() {
+    for (useValue in listOf(true, false)) {
+      assertFailure {
+          classBuilder(useValue)
+            .primaryConstructor(
+              FunSpec.constructorBuilder().addParameter("avocado", STRING).build()
+            )
+            .addProperty(
+              PropertySpec.builder("avocado", STRING).initializer("avocado").mutable().build()
+            )
+            .build()
+        }
+        .isInstanceOf<IllegalStateException>()
+        .hasMessage("value/inline classes must only have final read-only (val) property parameters")
+    }
+  }
+
+  @Test
+  fun inlineClassWithPrivateConstructor() {
+    for (useValue in listOf(true, false)) {
+      val modifierString = modifier(useValue).keyword
+      val guacamole =
+        classBuilder(useValue)
+          .primaryConstructor(
+            FunSpec.constructorBuilder()
+              .addParameter("avocado", STRING)
+              .addModifiers(PRIVATE)
+              .build()
+          )
+          .addProperty(PropertySpec.builder("avocado", STRING).initializer("avocado").build())
+          .build()
+
+      assertThat(guacamole.toString())
+        .isEqualTo(
+          """
+        |public $modifierString class Guacamole private constructor(
+        |  public val avocado: kotlin.String,
+        |)
+        |
+        """
+            .trimMargin()
+        )
+    }
+  }
+
+  @Test
+  fun inlineEnumClass() {
+    for (useValue in listOf(true, false)) {
+      val modifierString = modifier(useValue).keyword
+      val guacamole =
+        TypeSpec.enumBuilder("Foo")
+          .addModifiers(modifier(useValue))
+          .primaryConstructor(FunSpec.constructorBuilder().addParameter("x", INT).build())
+          .addEnumConstant(
+            "A",
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("%L", 1).build(),
+          )
+          .addEnumConstant(
+            "B",
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("%L", 2).build(),
+          )
+          .addProperty(PropertySpec.builder("x", INT).initializer("x").build())
+          .build()
+      assertThat(guacamole.toString())
+        .isEqualTo(
+          """
+        |public enum $modifierString class Foo(
+        |  public val x: kotlin.Int,
+        |) {
+        |  A(1),
+        |  B(2),
+        |  ;
+        |}
+        |
+        """
+            .trimMargin()
+        )
+    }
+  }
+
+  @Test
+  fun multiFieldValueClass() {
+    val color =
+      TypeSpec.classBuilder("Color")
+        .jvmInline()
+        .addModifiers(KModifier.VALUE)
+        .primaryConstructor(
+          FunSpec.constructorBuilder()
+            .addParameter("alpha", U_BYTE)
+            .addParameter("red", U_BYTE)
+            .addParameter("green", U_BYTE)
+            .addParameter("blue", U_BYTE)
+            .build()
+        )
+        .addProperty(PropertySpec.builder("alpha", U_BYTE).initializer("alpha").build())
+        .addProperty(PropertySpec.builder("red", U_BYTE).initializer("red").build())
+        .addProperty(PropertySpec.builder("green", U_BYTE).initializer("green").build())
+        .addProperty(PropertySpec.builder("blue", U_BYTE).initializer("blue").build())
+        .build()
+    assertThat(color.toString())
+      .isEqualTo(
+        """
+        @kotlin.jvm.JvmInline
+        public value class Color(
+          public val alpha: kotlin.UByte,
+          public val red: kotlin.UByte,
+          public val green: kotlin.UByte,
+          public val blue: kotlin.UByte,
+        )
+
+        """
+          .trimIndent()
+      )
+  }
+}

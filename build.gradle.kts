@@ -155,10 +155,12 @@ subprojects {
   }
 }
 
+@Suppress("OPT_IN_USAGE")
 apiValidation {
-  nonPublicMarkers += "com.squareup.kotlinpoet.ExperimentalKotlinPoetApi"
+  nonPublicMarkers += "io.github.kavikt.ExperimentalKaviApi"
   ignoredProjects += listOf(
     "interop", // Empty middle package
     "test-processor", // Test only
   )
+  klib.enabled = true
 }

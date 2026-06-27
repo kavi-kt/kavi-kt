@@ -5,65 +5,56 @@ permissions:
 
 on:
   push:
-    branches-ignore:
-      - main
-    tags-ignore:
-      - '**'
+    branches:
+      - '**' # All branches; tag pushes are handled by release.yml.
   pull_request:
 
 env:
-  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
+  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false -Dorg.gradle.internal.launcher.welcomeMessageEnabled=false"
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  jvm:
+  build:
     strategy:
+      fail-fast: false
       matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
+        include:
+          - os: ubuntu-latest # jvm + interop (KSP/metadata) + linuxX64/linuxArm64 + js + wasmJs
+            task: build
+          - os: macos-latest # macosArm64
+            task: ':kavi-kt:check'
+          - os: windows-latest # mingwX64
+            task: ':kavi-kt:check'
 
     runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v5.0.0
 
-      - uses: actions/setup-java@v5
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v5.0.0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5.0.0
         with:
           distribution: 'zulu'
           java-version-file: .github/workflows/.java-version
 
-      - name: Full build
-        if: matrix.os == 'ubuntu-latest'
-        run: ./gradlew build
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5.0.0
 
-      - name: KotlinPoet check
-        if: "matrix.os != 'ubuntu-latest'"
-        run: ./gradlew :kotlinpoet:check
-
-  build-docs:
-    runs-on: ubuntu-latest
-    if: github.repository == 'square/kotlinpoet'
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - uses: actions/setup-java@v5
+      - name: Cache Kotlin/Native (konan)
+        uses: actions/cache@v4
         with:
-          distribution: 'zulu'
-          java-version-file: .github/workflows/.java-version
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/*.gradle.kts', 'gradle/libs.versions.toml', 'gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
 
-      - name: Prep docs
-        run: ./gradlew dokkaGeneratePublicationHtml
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: 3.14
-
-      - name: Build mkdocs
-        run: |
-          pip3 install -r .github/workflows/mkdocs-requirements.txt
-          mkdocs build
+      - name: Build
+        run: ./gradlew ${{ matrix.task }}

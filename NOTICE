@@ -1,0 +1,8 @@
+Kavi-KT
+Copyright (C) Kavi-KT contributors
+
+This product is a fork of KotlinPoet (https://github.com/square/kotlinpoet),
+Copyright (C) Square, Inc., licensed under the Apache License, Version 2.0.
+
+Modifications, including the Kotlin Multiplatform adaptation, are distributed
+under the same Apache License, Version 2.0.

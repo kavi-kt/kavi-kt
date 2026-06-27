@@ -19,12 +19,12 @@ plugins {
 
 tasks.jar {
   manifest {
-    attributes("Automatic-Module-Name" to "com.squareup.kotlinpoet.ksp")
+    attributes("Automatic-Module-Name" to "io.github.kavikt.ksp")
   }
 }
 
 dependencies {
-  api(projects.kotlinpoet)
+  api(projects.kaviKt)
   compileOnly(libs.ksp.api)
   testImplementation(libs.kotlin.junit)
   testImplementation(libs.assertk)

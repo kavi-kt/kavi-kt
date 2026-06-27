@@ -1,13 +1,12 @@
 permissions:
-  contents: write
+  contents: read
 name: Release
 
 on:
   push:
-    branches:
-      - main
     tags:
-      - '**'
+      # Version tags only, e.g. v2.4.0-alpha01
+      - 'v*'
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
@@ -15,7 +14,7 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == 'square/kotlinpoet'
+    if: github.repository == 'kavi-kt/kavi-kt'
 
     steps:
       - name: Checkout
@@ -26,32 +25,20 @@ jobs:
           distribution: 'zulu'
           java-version-file: .github/workflows/.java-version
 
-      - name: Upload Artifacts
-        run: ./gradlew publish
+      - name: Verify tag matches committed version
+        # The tag must sit on the commit that declares this version
+        run: |
+          file_version="$(grep '^VERSION_NAME=' gradle.properties | cut -d= -f2)"
+          tag_version="${GITHUB_REF_NAME#v}"
+          if [ "$file_version" != "$tag_version" ]; then
+            echo "Tag $GITHUB_REF_NAME ($tag_version) does not match VERSION_NAME ($file_version) in gradle.properties." >&2
+            exit 1
+          fi
+
+      - name: Publish to Maven Central
+        run: ./gradlew clean publish
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_CENTRAL_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_CENTRAL_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_SECRET_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_SECRET_PASSPHRASE }}
-
-      - name: Prep docs
-        run: ./gradlew dokkaGeneratePublicationHtml
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: 3.14
-
-      - name: Build mkdocs
-        run: |
-          pip3 install -r .github/workflows/mkdocs-requirements.txt
-          mkdocs build
-
-      - name: Deploy 🚀
-        if: success()
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: site # The folder the action should deploy.
-          SINGLE_COMMIT: true

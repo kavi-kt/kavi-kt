@@ -31,7 +31,7 @@ tasks.test {
 }
 
 dependencies {
-  implementation(projects.kotlinpoet)
+  implementation(projects.kaviKt)
   implementation(projects.interop.ksp)
   implementation(libs.autoService)
   compileOnly(libs.ksp.api)

@@ -44,6 +44,9 @@ ksp-aaEmbeddable = { module = "com.google.devtools.ksp:symbol-processing-aa-embe
 
 ktfmt = "com.facebook:ktfmt:0.64"
 
+okio = "com.squareup.okio:okio:3.17.0"
+okio-fakefilesystem = "com.squareup.okio:okio-fakefilesystem:3.17.0"
+
 assertk = "com.willowtreeapps.assertk:assertk:0.28.1"
 compileTesting = { module = "com.google.testing.compile:compile-testing", version = "0.23.0" }
 jimfs = { module = "com.google.jimfs:jimfs", version = "1.3.1" }
