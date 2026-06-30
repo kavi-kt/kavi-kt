@@ -123,6 +123,7 @@ public final class io/github/kavikt/CodeBlock$Builder {
 	public fun <init> ()V
 	public final fun add (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/CodeBlock$Builder;
 	public final fun add (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
+	public final fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
 	public final fun addNamed (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/CodeBlock$Builder;
 	public final fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;
 	public final fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlock$Builder;

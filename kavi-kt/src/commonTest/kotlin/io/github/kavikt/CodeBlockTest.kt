@@ -45,6 +45,20 @@ class CodeBlockTest {
     assertThat(a.toString()).isEqualTo("delicious taco")
   }
 
+  @Test
+  fun addComment() {
+    val codeBlock = CodeBlock.builder().addComment("a comment").build()
+    assertThat(codeBlock.toString()).isEqualTo("// a comment\n")
+  }
+
+  @Test
+  fun addCommentWithPlaceholders() {
+    val codeBlock =
+      CodeBlock.builder().addComment("not yet implemented %L of type %T", "field", STRING).build()
+    assertThat(codeBlock.toString())
+      .isEqualTo("// not yet implemented field of type kotlin.String\n")
+  }
+
   // kmp: this test was extracted: doublePrecision
 
   // kmp: this test was extracted: floatPrecision

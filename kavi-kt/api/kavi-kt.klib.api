@@ -308,6 +308,7 @@ final class io.github.kavikt/CodeBlock { // io.github.kavikt/CodeBlock|null[0]
 
         final fun add(io.github.kavikt/CodeBlock): io.github.kavikt/CodeBlock.Builder // io.github.kavikt/CodeBlock.Builder.add|add(io.github.kavikt.CodeBlock){}[0]
         final fun add(kotlin/String, kotlin/Array<out kotlin/Any?>...): io.github.kavikt/CodeBlock.Builder // io.github.kavikt/CodeBlock.Builder.add|add(kotlin.String;kotlin.Array<out|kotlin.Any?>...){}[0]
+        final fun addComment(kotlin/String, kotlin/Array<out kotlin/Any?>...): io.github.kavikt/CodeBlock.Builder // io.github.kavikt/CodeBlock.Builder.addComment|addComment(kotlin.String;kotlin.Array<out|kotlin.Any?>...){}[0]
         final fun addNamed(kotlin/String, kotlin.collections/Map<kotlin/String, *>): io.github.kavikt/CodeBlock.Builder // io.github.kavikt/CodeBlock.Builder.addNamed|addNamed(kotlin.String;kotlin.collections.Map<kotlin.String,*>){}[0]
         final fun addStatement(kotlin/String, kotlin/Array<out kotlin/Any?>...): io.github.kavikt/CodeBlock.Builder // io.github.kavikt/CodeBlock.Builder.addStatement|addStatement(kotlin.String;kotlin.Array<out|kotlin.Any?>...){}[0]
         final fun beginControlFlow(kotlin/String, kotlin/Array<out kotlin/Any?>...): io.github.kavikt/CodeBlock.Builder // io.github.kavikt/CodeBlock.Builder.beginControlFlow|beginControlFlow(kotlin.String;kotlin.Array<out|kotlin.Any?>...){}[0]
