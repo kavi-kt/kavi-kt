@@ -43,11 +43,11 @@ public fun main() {
 ```kotlin
 dependencies {
   // Multiplatform code-generation core.
-  implementation("io.github.kavi-kt:kavi-kt:2.4.0-alpha01")
+  implementation("io.github.kavi-kt:kavi-kt:2.4.0-alpha02")
 
   // Optional JVM-only interop modules:
-  implementation("io.github.kavi-kt:kavi-kt-metadata:2.4.0-alpha01")
-  implementation("io.github.kavi-kt:kavi-kt-ksp:2.4.0-alpha01")
+  implementation("io.github.kavi-kt:kavi-kt-metadata:2.4.0-alpha02")
+  implementation("io.github.kavi-kt:kavi-kt-ksp:2.4.0-alpha02")
 }
 ```
 
