@@ -149,6 +149,7 @@ public abstract interface class io/github/kavikt/CodeBlockHolder {
 public abstract interface class io/github/kavikt/CodeBlockHolder$Builder {
 	public abstract fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/CodeBlockHolder$Builder;
 	public abstract fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public abstract fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
 	public abstract fun addNamedCode (Ljava/lang/String;Ljava/util/Map;)Lio/github/kavikt/CodeBlockHolder$Builder;
 	public abstract fun addStatement (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
 	public abstract fun beginControlFlow (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
@@ -260,7 +261,8 @@ public final class io/github/kavikt/FileSpec$Builder : io/github/kavikt/Annotata
 	public fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FileSpec$Builder;
 	public synthetic fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
 	public fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
-	public final fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
+	public synthetic fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
 	public final fun addDefaultPackageImport (Ljava/lang/String;)Lio/github/kavikt/FileSpec$Builder;
 	public final fun addFileComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FileSpec$Builder;
 	public fun addFunction (Lio/github/kavikt/FunSpec;)Lio/github/kavikt/FileSpec$Builder;
@@ -376,7 +378,8 @@ public final class io/github/kavikt/FunSpec$Builder : io/github/kavikt/Annotatab
 	public fun addCode (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
 	public synthetic fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
 	public fun addCode (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
-	public final fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
+	public synthetic fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/CodeBlockHolder$Builder;
+	public fun addComment (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/FunSpec$Builder;
 	public synthetic fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/Documentable$Builder;
 	public fun addKdoc (Lio/github/kavikt/CodeBlock;)Lio/github/kavikt/FunSpec$Builder;
 	public synthetic fun addKdoc (Ljava/lang/String;[Ljava/lang/Object;)Lio/github/kavikt/Documentable$Builder;

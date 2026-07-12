@@ -36,6 +36,22 @@ class FunSpecTest {
 
   // kmp: this test was extracted: overrideDoesNotCopyOverrideAnnotation
 
+  @Test
+  fun addCommentThroughCodeBlockHolderBuilder() {
+    val builder = FunSpec.builder("main")
+    val holder: CodeBlockHolder.Builder<*> = builder
+    holder.addComment("this is a %L comment", "generated")
+    assertThat(builder.build().toString())
+      .isEqualTo(
+        """
+        |public fun main() {
+        |  // this is a generated comment
+        |}
+        |"""
+          .trimMargin()
+      )
+  }
+
   // kmp: this test was extracted: overrideExtendsOthersWorksWithActualTypeParameters
 
   // kmp: this test was extracted: overrideInvalidModifiers
